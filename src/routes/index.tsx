@@ -1,26 +1,49 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Nav } from "@/components/site/Nav";
+import { Hero } from "@/components/site/Hero";
+import { Packages } from "@/components/site/Packages";
+import { Equipment } from "@/components/site/Equipment";
+import { Portfolio } from "@/components/site/Portfolio";
+import { Footer } from "@/components/site/Footer";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "العبادي للإنتاج الفني والإعلامي · Al-Abadi Production" },
+      {
+        name: "description",
+        content:
+          "تصوير سينمائي ومونتاج احترافي للأفراح والمناسبات بجودة 4K. باقات مميزة من العبادي للإنتاج الفني والإعلامي.",
+      },
+      { property: "og:title", content: "Al-Abadi for Artistic and Media Production" },
+      {
+        property: "og:description",
+        content: "Elegant Simplicity. A Moment That Lasts. Cinematic wedding & event production in 4K.",
+      },
+    ],
+    links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap",
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div dir="rtl" lang="ar" className="min-h-screen bg-background text-foreground">
+      <Nav />
+      <main>
+        <Hero />
+        <Packages />
+        <Equipment />
+        <Portfolio />
+      </main>
+      <Footer />
     </div>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
