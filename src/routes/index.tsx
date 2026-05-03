@@ -5,6 +5,7 @@ import { Packages } from "@/components/site/Packages";
 import { Equipment } from "@/components/site/Equipment";
 import { Portfolio } from "@/components/site/Portfolio";
 import { Footer } from "@/components/site/Footer";
+import { LanguageProvider, useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,7 +27,7 @@ export const Route = createFileRoute("/")({
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Inter:wght@400;600;800;900&display=swap",
       },
     ],
   }),
@@ -35,7 +36,16 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div dir="rtl" lang="ar" className="min-h-screen bg-background text-foreground">
+    <LanguageProvider>
+      <Shell />
+    </LanguageProvider>
+  );
+}
+
+function Shell() {
+  const { dir } = useLang();
+  return (
+    <div dir={dir} className="min-h-screen bg-background text-foreground">
       <Nav />
       <main>
         <Hero />
