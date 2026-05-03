@@ -14,16 +14,181 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      admin_allowlist: {
+        Row: {
+          email: string
+        }
+        Insert: {
+          email: string
+        }
+        Update: {
+          email?: string
+        }
+        Relationships: []
+      }
+      media_items: {
+        Row: {
+          created_at: string
+          id: string
+          sort_order: number
+          tag_ar: string | null
+          tag_en: string | null
+          thumbnail_url: string | null
+          title_ar: string | null
+          title_en: string | null
+          type: Database["public"]["Enums"]["media_type"]
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          sort_order?: number
+          tag_ar?: string | null
+          tag_en?: string | null
+          thumbnail_url?: string | null
+          title_ar?: string | null
+          title_en?: string | null
+          type: Database["public"]["Enums"]["media_type"]
+          url: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          sort_order?: number
+          tag_ar?: string | null
+          tag_en?: string | null
+          thumbnail_url?: string | null
+          title_ar?: string | null
+          title_en?: string | null
+          type?: Database["public"]["Enums"]["media_type"]
+          url?: string
+        }
+        Relationships: []
+      }
+      packages: {
+        Row: {
+          accent: boolean
+          badge_ar: string | null
+          badge_en: string | null
+          created_at: string
+          features_ar: Json
+          features_en: Json
+          id: string
+          name_ar: string
+          name_en: string
+          price: string | null
+          slug: string
+          sort_order: number
+          tagline_ar: string | null
+          tagline_en: string | null
+          updated_at: string
+        }
+        Insert: {
+          accent?: boolean
+          badge_ar?: string | null
+          badge_en?: string | null
+          created_at?: string
+          features_ar?: Json
+          features_en?: Json
+          id?: string
+          name_ar: string
+          name_en: string
+          price?: string | null
+          slug: string
+          sort_order?: number
+          tagline_ar?: string | null
+          tagline_en?: string | null
+          updated_at?: string
+        }
+        Update: {
+          accent?: boolean
+          badge_ar?: string | null
+          badge_en?: string | null
+          created_at?: string
+          features_ar?: Json
+          features_en?: Json
+          id?: string
+          name_ar?: string
+          name_en?: string
+          price?: string | null
+          slug?: string
+          sort_order?: number
+          tagline_ar?: string | null
+          tagline_en?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          facebook: string | null
+          id: string
+          instagram: string | null
+          phone: string | null
+          social_handle: string | null
+          updated_at: string
+          whatsapp: string | null
+          youtube: string | null
+        }
+        Insert: {
+          facebook?: string | null
+          id: string
+          instagram?: string | null
+          phone?: string | null
+          social_handle?: string | null
+          updated_at?: string
+          whatsapp?: string | null
+          youtube?: string | null
+        }
+        Update: {
+          facebook?: string | null
+          id?: string
+          instagram?: string | null
+          phone?: string | null
+          social_handle?: string | null
+          updated_at?: string
+          whatsapp?: string | null
+          youtube?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin"
+      media_type: "image" | "youtube"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +315,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin"],
+      media_type: ["image", "youtube"],
+    },
   },
 } as const
