@@ -17,13 +17,13 @@ export function AdminDashboard() {
   }, []);
 
   const tabs: { id: Tab; label: string; icon: typeof LayoutGrid }[] = [
-    { id: "packages", label: "Packages", icon: LayoutGrid },
-    { id: "media", label: "Media", icon: ImageIcon },
-    { id: "settings", label: "Settings", icon: Settings },
+    { id: "packages", label: "الباقات", icon: LayoutGrid },
+    { id: "media", label: "الوسائط", icon: ImageIcon },
+    { id: "settings", label: "الإعدادات", icon: Settings },
   ];
 
   return (
-    <div dir="ltr" className="min-h-screen bg-background text-foreground">
+    <div dir="rtl" className="min-h-screen bg-background text-foreground font-display">
       <header className="sticky top-0 z-30 bg-background/80 backdrop-blur-xl border-b border-border">
         <div className="container mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
@@ -31,8 +31,8 @@ export function AdminDashboard() {
               <Camera className="w-5 h-5 text-primary-foreground" />
             </span>
             <div>
-              <div className="font-extrabold text-sm">AL-ABADI</div>
-              <div className="text-[10px] text-muted-foreground">Admin · {email}</div>
+              <div className="font-extrabold text-sm">العبادي</div>
+              <div className="text-[10px] text-muted-foreground">لوحة التحكم · {email}</div>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -41,14 +41,14 @@ export function AdminDashboard() {
               className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-border hover:border-primary text-xs font-bold"
             >
               <ExternalLink className="w-3.5 h-3.5" />
-              View Site
+              عرض الموقع
             </Link>
             <button
               onClick={() => supabase.auth.signOut()}
               className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-border hover:border-destructive hover:text-destructive text-xs font-bold"
             >
               <LogOut className="w-3.5 h-3.5" />
-              Sign out
+              خروج
             </button>
           </div>
         </div>
