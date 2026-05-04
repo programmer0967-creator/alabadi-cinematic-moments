@@ -50,6 +50,7 @@ export function MediaModal({ item, onClose }: { item: MediaRow | null; onClose: 
             ) : (
               <img src={item.url} alt={item.title_en ?? ""} className="w-full h-auto max-h-[85vh] object-contain bg-black" />
             )}
+            </div>
           </motion.div>
         </motion.div>
       )}
