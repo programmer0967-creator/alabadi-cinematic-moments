@@ -30,14 +30,14 @@ export function MediaAdmin() {
   };
 
   const remove = async (id: string) => {
-    if (!confirm("Delete this item?")) return;
+    if (!confirm("حذف هذا العنصر؟")) return;
     await supabase.from("media_items").delete().eq("id", id);
     load();
   };
 
   const addYoutube = async () => {
     const id = youtubeId(ytUrl);
-    if (!id) return alert("Invalid YouTube URL");
+    if (!id) return alert("رابط يوتيوب غير صالح");
     await supabase.from("media_items").insert({
       type: "youtube",
       url: ytUrl,
@@ -81,16 +81,17 @@ export function MediaAdmin() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-extrabold">Media Gallery</h2>
+      <h2 className="text-2xl font-extrabold">معرض الوسائط</h2>
 
       <div className="grid md:grid-cols-2 gap-4">
         <div className="rounded-2xl border border-border bg-gradient-card p-5">
           <div className="flex items-center gap-2 mb-3">
             <Youtube className="w-5 h-5 text-primary" />
-            <h3 className="font-extrabold">Add YouTube Video</h3>
+            <h3 className="font-extrabold">إضافة فيديو يوتيوب</h3>
           </div>
           <div className="flex gap-2">
             <input
+              dir="ltr"
               value={ytUrl}
               onChange={(e) => setYtUrl(e.target.value)}
               placeholder="https://youtu.be/..."
@@ -101,7 +102,7 @@ export function MediaAdmin() {
               className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-bold"
             >
               <Plus className="w-4 h-4" />
-              Add
+              إضافة
             </button>
           </div>
         </div>
@@ -109,7 +110,7 @@ export function MediaAdmin() {
         <div className="rounded-2xl border border-border bg-gradient-card p-5">
           <div className="flex items-center gap-2 mb-3">
             <Upload className="w-5 h-5 text-primary" />
-            <h3 className="font-extrabold">Upload Image</h3>
+            <h3 className="font-extrabold">رفع صورة</h3>
           </div>
           <input
             ref={fileRef}
@@ -124,7 +125,7 @@ export function MediaAdmin() {
             className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-dashed border-border hover:border-primary transition text-sm font-bold disabled:opacity-50"
           >
             {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
-            Choose image to upload
+            اختر صورة للرفع
           </button>
         </div>
       </div>
@@ -148,10 +149,11 @@ export function MediaAdmin() {
                 className="w-full px-2 py-1.5 rounded bg-background border border-border focus:border-primary outline-none text-xs"
               />
               <input
+                dir="ltr"
                 value={m.title_en ?? ""}
                 onChange={(e) => update(m.id, { title_en: e.target.value })}
                 onBlur={() => save(m)}
-                placeholder="Title (EN)"
+                placeholder="العنوان (إنجليزي)"
                 className="w-full px-2 py-1.5 rounded bg-background border border-border focus:border-primary outline-none text-xs"
               />
               <div className="flex gap-2">
@@ -164,10 +166,11 @@ export function MediaAdmin() {
                   className="flex-1 px-2 py-1.5 rounded bg-background border border-border outline-none text-xs"
                 />
                 <input
+                  dir="ltr"
                   value={m.tag_en ?? ""}
                   onChange={(e) => update(m.id, { tag_en: e.target.value })}
                   onBlur={() => save(m)}
-                  placeholder="tag"
+                  placeholder="وسم (إنجليزي)"
                   className="flex-1 px-2 py-1.5 rounded bg-background border border-border outline-none text-xs"
                 />
               </div>
