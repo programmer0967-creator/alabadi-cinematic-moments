@@ -82,16 +82,27 @@ export function AdminLogin() {
           placeholder="you@example.com"
         />
         <label className="block text-xs font-bold mb-1.5">كلمة المرور</label>
-        <input
-          type="password"
-          required
-          minLength={6}
-          dir="ltr"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary outline-none mb-2 text-right"
-          placeholder="••••••••"
-        />
+        <div className="relative mb-2">
+          <input
+            type={showPassword ? "text" : "password"}
+            required
+            minLength={6}
+            dir="ltr"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full px-4 py-3 ps-12 rounded-xl bg-background border border-border focus:border-primary outline-none text-right"
+            placeholder="••••••••"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((v) => !v)}
+            title={showPassword ? "إخفاء كلمة المرور" : "إظهار كلمة المرور"}
+            aria-label={showPassword ? "إخفاء كلمة المرور" : "إظهار كلمة المرور"}
+            className="absolute top-1/2 -translate-y-1/2 left-2 w-9 h-9 grid place-items-center rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition"
+          >
+            {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+          </button>
+        </div>
 
         {error && <div className="text-sm text-destructive mt-2">{error}</div>}
 
