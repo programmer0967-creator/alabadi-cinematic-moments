@@ -29,22 +29,22 @@ export function SettingsAdmin() {
     const { id, ...rest } = s;
     const { error } = await supabase.from("site_settings").update(rest).eq("id", id);
     setSaving(false);
-    setMsg(error ? error.message : "Saved ✓");
+    setMsg(error ? error.message : "تم الحفظ ✓");
     setTimeout(() => setMsg(""), 2000);
   };
 
-  const fields: { k: keyof SiteSettings; label: string; placeholder?: string }[] = [
-    { k: "phone", label: "Phone (display)", placeholder: "+967 779 038 283" },
-    { k: "whatsapp", label: "WhatsApp number (digits only)", placeholder: "967779038283" },
-    { k: "instagram", label: "Instagram URL" },
-    { k: "youtube", label: "YouTube URL" },
-    { k: "facebook", label: "Facebook URL" },
-    { k: "social_handle", label: "Social handle (without @)" },
+  const fields: { k: keyof SiteSettings; label: string; placeholder?: string; ltr?: boolean }[] = [
+    { k: "phone", label: "رقم الهاتف (للعرض)", placeholder: "+967 779 038 283", ltr: true },
+    { k: "whatsapp", label: "رقم واتساب (أرقام فقط)", placeholder: "967779038283", ltr: true },
+    { k: "instagram", label: "رابط إنستغرام", ltr: true },
+    { k: "youtube", label: "رابط يوتيوب", ltr: true },
+    { k: "facebook", label: "رابط فيسبوك", ltr: true },
+    { k: "social_handle", label: "اسم المستخدم (بدون @)", ltr: true },
   ];
 
   return (
     <div className="max-w-2xl">
-      <h2 className="text-2xl font-extrabold mb-6">Contact & Social</h2>
+      <h2 className="text-2xl font-extrabold mb-6">معلومات التواصل والروابط</h2>
       <div className="space-y-4 rounded-2xl border border-border bg-gradient-card p-5">
         {fields.map((f) => (
           <div key={f.k}>
@@ -52,6 +52,7 @@ export function SettingsAdmin() {
               {f.label}
             </label>
             <input
+              dir={f.ltr ? "ltr" : "rtl"}
               value={(s[f.k] as string) ?? ""}
               onChange={(e) => setS({ ...s, [f.k]: e.target.value })}
               placeholder={f.placeholder}
@@ -66,7 +67,7 @@ export function SettingsAdmin() {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-primary text-primary-foreground text-sm font-bold shadow-glow disabled:opacity-50"
           >
             {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
-            Save Changes
+            حفظ التغييرات
           </button>
           {msg && <span className="text-xs text-primary">{msg}</span>}
         </div>

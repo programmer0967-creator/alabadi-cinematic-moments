@@ -27,12 +27,12 @@ export function PackagesAdmin() {
     const { id, ...rest } = row;
     const { error } = await supabase.from("packages").update(rest).eq("id", id);
     setSavingId(null);
-    setMsg(error ? `Error: ${error.message}` : "Saved ✓");
+    setMsg(error ? `خطأ: ${error.message}` : "تم الحفظ ✓");
     setTimeout(() => setMsg(""), 2000);
   };
 
   const remove = async (id: string) => {
-    if (!confirm("Delete this package?")) return;
+    if (!confirm("حذف هذه الباقة؟")) return;
     await supabase.from("packages").delete().eq("id", id);
     load();
   };
@@ -60,7 +60,7 @@ export function PackagesAdmin() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-extrabold">Packages</h2>
+        <h2 className="text-2xl font-extrabold">الباقات</h2>
         <div className="flex items-center gap-3">
           {msg && <span className="text-xs text-primary">{msg}</span>}
           <button
@@ -68,7 +68,7 @@ export function PackagesAdmin() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-primary text-primary-foreground text-sm font-bold shadow-glow hover:scale-105 transition"
           >
             <Plus className="w-4 h-4" />
-            Add Package
+            إضافة باقة
           </button>
         </div>
       </div>
@@ -90,7 +90,7 @@ export function PackagesAdmin() {
                     checked={p.accent}
                     onChange={(e) => update(p.id, { accent: e.target.checked })}
                   />
-                  Highlight
+                  مميّزة
                 </label>
               </div>
               <div className="flex items-center gap-2">
@@ -100,7 +100,7 @@ export function PackagesAdmin() {
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-xs font-bold disabled:opacity-50"
                 >
                   {savingId === p.id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Save className="w-3.5 h-3.5" />}
-                  Save
+                  حفظ
                 </button>
                 <button
                   onClick={() => remove(p.id)}
@@ -112,13 +112,18 @@ export function PackagesAdmin() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-4">
-              {(["name", "tagline", "badge"] as const).flatMap((field) =>
-                (["ar", "en"] as const).map((loc) => {
+              {(["name", "tagline", "badge"] as const).flatMap((field) => {
+                const labels: Record<string, string> = {
+                  name: "الاسم",
+                  tagline: "الوصف المختصر",
+                  badge: "الشارة",
+                };
+                return (["ar", "en"] as const).map((loc) => {
                   const key = `${field}_${loc}` as keyof PackageRow;
                   return (
                     <div key={key as string}>
                       <label className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-1 font-bold">
-                        {field} ({loc})
+                        {labels[field]} ({loc === "ar" ? "عربي" : "إنجليزي"})
                       </label>
                       <input
                         dir={loc === "ar" ? "rtl" : "ltr"}
@@ -128,10 +133,10 @@ export function PackagesAdmin() {
                       />
                     </div>
                   );
-                })
-              )}
+                });
+              })}
               <div>
-                <label className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-1 font-bold">Price</label>
+                <label className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-1 font-bold">السعر</label>
                 <input
                   value={p.price ?? ""}
                   onChange={(e) => update(p.id, { price: e.target.value })}
@@ -147,7 +152,7 @@ export function PackagesAdmin() {
                 return (
                   <div key={loc}>
                     <label className="block text-[10px] uppercase tracking-wider text-muted-foreground mb-1 font-bold">
-                      Features ({loc}) — one per line
+                      المميزات ({loc === "ar" ? "عربي" : "إنجليزي"}) — ميزة لكل سطر
                     </label>
                     <textarea
                       dir={loc === "ar" ? "rtl" : "ltr"}

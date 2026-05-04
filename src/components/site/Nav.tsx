@@ -1,4 +1,4 @@
-import { Camera, Globe, LayoutDashboard } from "lucide-react";
+import { Camera, Globe } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { useSettings, whatsappLink } from "@/hooks/useSiteData";
 import { Link } from "@tanstack/react-router";
@@ -30,13 +30,6 @@ export function Nav() {
             <Globe className="w-4 h-4" />
             {lang === "ar" ? "EN" : "ع"}
           </button>
-          <Link
-            to="/admin"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-border hover:border-primary hover:text-primary transition text-xs font-bold"
-            aria-label="Admin"
-          >
-            <LayoutDashboard className="w-4 h-4" />
-          </Link>
           <a
             href={whatsappLink(settings)}
             target="_blank"

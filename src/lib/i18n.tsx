@@ -14,7 +14,7 @@ export const T: Dict = {
   bookNow: { ar: "احجز الآن", en: "Book Now" },
   bookWhatsapp: { ar: "احجز عبر واتساب", en: "Book via WhatsApp" },
   watchWork: { ar: "شاهد أعمالنا", en: "Watch Our Work" },
-  heroBadge: { ar: "الإنتاج الفني والإعلامي · صنعاء", en: "Artistic & Media Production · Sana'a" },
+  heroBadge: { ar: "الإنتاج الفني والإعلامي · إب", en: "Artistic & Media Production · Ibb" },
   heroSlogan: { ar: "بساطة أنيقة ... لحظة تدوم", en: "Elegant Simplicity. A Moment That Lasts." },
   heroDesc: {
     ar: "نُحوّل أجمل لحظاتك إلى قصة سينمائية بتصوير احترافي ومونتاج إبداعي بجودة 4K.",
