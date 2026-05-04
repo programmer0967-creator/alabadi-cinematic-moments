@@ -45,17 +45,17 @@ function AdminPage() {
     );
   if (!isAdmin)
     return (
-      <div dir="ltr" className="min-h-screen grid place-items-center bg-background text-foreground p-6">
+      <div dir="rtl" className="min-h-screen grid place-items-center bg-background text-foreground p-6 font-display">
         <div className="text-center max-w-md">
-          <h1 className="text-3xl font-extrabold mb-3">Access denied</h1>
+          <h1 className="text-3xl font-extrabold mb-3">الوصول مرفوض</h1>
           <p className="text-muted-foreground mb-6">
-            This account is not authorized as admin. Sign in with the admin email or contact support.
+            هذا الحساب غير مصرّح له بدخول لوحة التحكم. الرجاء استخدام بريد المسؤول المعتمد.
           </p>
           <button
             onClick={() => supabase.auth.signOut()}
             className="px-5 py-2.5 rounded-full border border-border hover:border-primary"
           >
-            Sign out
+            تسجيل الخروج
           </button>
         </div>
       </div>
