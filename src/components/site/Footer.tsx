@@ -19,7 +19,7 @@ export function Footer() {
             href={whatsappLink(s)}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-primary text-primary-foreground font-extrabold shadow-glow hover:scale-105 transition"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-primary text-primary-foreground shadow-glow hover:scale-105 transition font-extrabold text-justify"
           >
             <Phone className="w-5 h-5" />
             {s?.phone ?? "+967 779 038 283"}
@@ -62,7 +62,7 @@ export function Footer() {
           <div>
             <h4 className="font-extrabold mb-4">{t("directContact")}</h4>
             <a href={whatsappLink(s)} className="block text-sm text-muted-foreground hover:text-primary transition">
-              WhatsApp: {s?.phone ?? "+967 779 038 283"}
+              &nbsp; 779038283 967+
             </a>
             <p className="text-sm text-muted-foreground mt-2">{t("photographer")}</p>
           </div>
