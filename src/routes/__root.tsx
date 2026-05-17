@@ -29,14 +29,18 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "العبادي للإنتاج الفني والإعلامي" },
+      { name: "description", content: "Al-Abadi Visions is a premium portfolio and booking website for artistic media production." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "العبادي للإنتاج الفني والإعلامي" },
+      { property: "og:description", content: "Al-Abadi Visions is a premium portfolio and booking website for artistic media production." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "العبادي للإنتاج الفني والإعلامي" },
+      { name: "twitter:description", content: "Al-Abadi Visions is a premium portfolio and booking website for artistic media production." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9f7b25e9-e8e3-4e7d-859d-3994e4c7e278/id-preview-0a7f4b43--35fc797f-aa8c-4021-840c-3c84eb38b5f2.lovable.app-1779046124209.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9f7b25e9-e8e3-4e7d-859d-3994e4c7e278/id-preview-0a7f4b43--35fc797f-aa8c-4021-840c-3c84eb38b5f2.lovable.app-1779046124209.png" },
     ],
     links: [
       {
