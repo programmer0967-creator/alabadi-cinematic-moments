@@ -18,19 +18,6 @@ export function AdminLogin() {
     let result;
     if (mode === "signin") {
       result = await supabase.auth.signInWithPassword({ email, password });
-      // Auto-create on first login if it's the seeded admin
-      if (result.error && email === "mohammed@gmail.com" && password === "mohammed") {
-        const signup = await supabase.auth.signUp({
-          email,
-          password,
-          options: { emailRedirectTo: `${window.location.origin}/admin` },
-        });
-        if (!signup.error) {
-          result = await supabase.auth.signInWithPassword({ email, password });
-        } else {
-          result = signup;
-        }
-      }
     } else {
       result = await supabase.auth.signUp({
         email,
